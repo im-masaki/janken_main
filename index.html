@@ -6,11 +6,12 @@
     <script src="janken.js"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/main.css">
-    <title>ジャンケンゲーム</title>
+    <title>じゃんけんげーむ</title>
   </head>
   <body>
         <header>
-            <h1>ジャンケンゲーム</h1>
+            <h1>じゃんけんげーむ</h1>
+            <hr>
         </header>
 
         <main style="display: none;">
@@ -39,10 +40,10 @@
 
             <div class="result">
                 <div class="hand">
-                    <div>あなたの手 : <span class="show_player_hand"></span></div>
-                    <div>相手の手 : <span class="show_program_hand"></span></div>
+                    <div>自分 : <span class="show_player_hand"></span></div>
+                    <div>相手 : <span class="show_program_hand"></span></div>
                 </div>
-
+                <hr>
                 <div class="count">
                     <div>勝ち : <span class="win_count">0</span>勝</div>
                     <div>負け : <span class="lose_count">0</span>敗</div>
@@ -54,39 +55,40 @@
                 </div>
             </div>
 
-            <div class="btn_2">
+            <input type="button" onclick="window.location.reload(); " value="リセット">
+            <!-- <div class="btn_2">
                 <input type="button" value="保存" id="save" class="">
                 <input type="button" value="消去" id="clear">
-            </div>
+            </div> -->
         </main>
         
         <script>
             $("main").fadeIn(1000);
 
-            $("#save").on("click",function(){
-                let value = $(".win").val();
-                localStorage.setItem("memo",value);
-                alert("保存しました");
-            });
+            // $("#save").on("click",function(){
+            //     let value = $(".win").val();
+            //     localStorage.setItem("memo",value);
+            //     alert("保存しました");
+            // });
 
-            $("#clear").on("click",function(){
-            localStorage.removeItem("memo");
-            alert("削除しました");
-            $(".win_per").val("");
-            });
+            // $("#clear").on("click",function(){
+            // localStorage.removeItem("memo");
+            // alert("削除しました");
+            // $(".win_per").val("");
+            // });
 
-            if(localStorage.getItem("memo")){
-                let value = localStorage.getItem("memo");
-                $(".win_per").val(value);
-            }
+            // if(localStorage.getItem("memo")){
+            //     let value = localStorage.getItem("memo");
+            //     $(".win_per").val(value);
+            // }
 
 
             $(window).on("load", function() {
                 $(".janken").on("click", function() {
                 janken();
-                var win = parseInt($(".win_count").text());
-                var lose = parseInt($(".lose_count").text());
-                var win_per = (win/(win + lose)) * 100;
+                let win = parseInt($(".win_count").text());
+                let lose = parseInt($(".lose_count").text());
+                let win_per = (win/(win + lose)) * 100;
                 if (!Number.isNaN(win_per)) {
                     $(".win_per").text(Math.floor(win_per));
                 }
@@ -95,22 +97,22 @@
             
             
             function janken() {
-                var player_hand = $(':radio[name="janken"]:checked').val();
-                var program_hand = Math.floor(Math.random() * 3);
-                var jankens = ["グー", "チョキ", "パー"];
+                let player_hand = $(':radio[name="janken"]:checked').val();
+                let program_hand = Math.floor(Math.random() * 3);
+                let jankens = ["グー", "チョキ", "パー"];
                 if (!!player_hand === false) {
                     alert("手を選んでください！")
                 } else {
                 $(".show_player_hand").html(jankens[player_hand]);
                 $(".show_program_hand").html(jankens[program_hand]);
                 if (player_hand == program_hand) {
-                    $("#jadgment").html("あいこ");
+                    $("#jadgment").html("DRAW");
                     get_result(".quits_count");
                 } else if ((player_hand == 0 && program_hand == 1) || (player_hand == 1 && program_hand == 2) || (player_hand == 2 && program_hand == 0)) {
-                    $("#jadgment").html("勝ち");
+                    $("#jadgment").html("WIN");
                     get_result(".win_count");
                 } else {
-                    $("#jadgment").html("負け");
+                    $("#jadgment").html("LOSE");
                     get_result(".lose_count");
                 }
                 }

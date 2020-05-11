@@ -6,9 +6,9 @@ body {
 }
 
 h1 {
-    font-size: 35px;
+    font-size: 30px;
     font-weight: bold;
-    margin:20px auto 80px;
+    margin:20px auto 20px;
 }
 .txt {
     font-size: 28px;
@@ -42,10 +42,10 @@ label img {
 
 .janken {
     display: inline-block;
-    width: 180px;
+    width: 160px;
     text-align: center;
     border: 2px solid #9ec34b;
-    font-size: 28px;
+    font-size: 25px;
     color: #9ec34b;
     text-decoration: none;
     font-weight: bold;
@@ -66,7 +66,7 @@ label img {
 /* hand */
 .hand {
     font-weight: bold;
-    font-size: 30px;
+    font-size: 20px;
     display: flex;
     justify-content: space-evenly;
 }
